@@ -43,6 +43,52 @@ router.patch("/:id/edit", async (req, res) => {
   }
 });
 
+//get all addresses of the particulat user
+router.get("/:id/addresses",async(req,res)=>{
+  try {
+      const user = await User.findById(req.params.id);
+      const Addresses = user.addresses;
+      return res.status(201).send({ data: Addresses});
+  } 
+  catch (error) {
+      res.status(500).send({error: error.message });
+  }
+})
+
+//create a new address for the particular user
+router.patch("/:id/addresses/create", async (req, res) => {
+  try {
+    const update_Add = await User.updateOne(
+      { _id: req.params.id },
+      { $push: { addresses: req.body } }
+    );
+    if (update_Add.acknowledged === true) {
+      const user = await User.findById(req.params.id).lean().exec();
+      return res.status(201).send({ data: user.addresses});
+    }
+    return res.status(404).send({error: "something went wrong" });
+  } catch (error) {
+    res.status(500).send({error: error.message });
+  }
+});
+
+//delete a particular address of the user by address_id
+router.patch("/:id/addresses/:idx/edit", async (req, res) => {
+  try {
+    const delete_Add = await User.updateOne(
+      { _id: req.params.id, "addresses._id": req.params.idx },
+      { $set: { "addresses.$": req.body } }
+    );
+    if (delete_Add.acknowledged === true) {
+      const user = await User.findById(req.params.id).lean().exec();
+      return res.status(201).send({ data: user.addresses, message: "success" });
+    }
+    return res.status(404).send({ error: "something went wrong" });
+  } catch (error) {
+    res.status(500).send({error: error.message });
+  }
+});
+
 //delete users by id
 router.delete("/:id/delete", async (req, res) => {
   try {
