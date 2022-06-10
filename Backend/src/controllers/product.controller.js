@@ -18,7 +18,7 @@ router.get("", async (req, res) => {
     const skip = (page - 1) * pagesize;
 
     if (desc !== "all" && cat !== "all") {
-      const products = await Product.find({ $and: [{ categories: {$elemMatch: { cat_name: cat } }}, { description: { $eq: desc } }] }).skip(skip).limit(pagesize).sort({ price: sort }).populate("categories.categories_id").lean().exec();
+      const products = await Product.find({ $and: [{$match: { categories: {$elemMatch: { categories_id: {cat_name: {$eq: cat}}} }}}, { description: { $eq: desc } }] }).skip(skip).limit(pagesize).sort({ price: sort }).populate("categories.categories_id").lean().exec();
       const total_pages = Math.ceil(await Product.find({ $and: [{ category: { $eq: cat } }, { description: { $eq: desc } }] }).countDocuments()) / pagesize;
       res.status(200).send({ productdata: products, total_pages });
 
@@ -33,8 +33,8 @@ router.get("", async (req, res) => {
     }
     else if (desc === "all" && cat !== "all") {
 
-      const products = await Product.find({ categories: { $elemMatch: { cat_name: cat } } }).skip(skip).limit(pagesize).sort({ price: sort }).populate("categories.categories_id").lean().exec();
-      const total_pages = Math.ceil(await Product.find({ categories: { $elemMatch: { cat_name: cat } } }).countDocuments()) / pagesize;
+      const products = await Product.find({ categories: { $elemMatch: { "categories_id.cat_name": cat} } }).skip(skip).limit(pagesize).sort({ price: sort }).populate("categories.categories_id").lean().exec();
+      const total_pages = Math.ceil(await Product.find({ categories: { $elemMatch: { "categories_id.cat_name": cat} } }).countDocuments()) / pagesize;
       res.status(200).send({ productdata: products, total_pages });
 
     }
