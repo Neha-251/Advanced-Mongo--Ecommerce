@@ -9,7 +9,8 @@ const orderSchema = new mongoose.Schema(
                 name: { type: String, required: true },
                 image: { type: String, required: true },
                 description: { type: String, required: false },
-                price: { type: Number, required: true }
+                price: { type: Number, required: true },
+                qty: {type: Number, required: true, default: 1}
             },
         ],
         user: {
@@ -24,7 +25,8 @@ const orderSchema = new mongoose.Schema(
             city: { type: String, required: true },
             state: { type: String, required: true },
             address_type: { type: String, required: false },
-        }
+        },
+        date:{type: Date, required: true}
     }
 )
 

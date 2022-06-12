@@ -30,7 +30,7 @@ router.get("/getOne", async(req, res) => {
 
         const order = await Order.find({user_id: { $eq: user_id}}).lean().exec();
 
-        //const sum = await order.aggregate({"$match": {"user_id": user_id, "total": { "$sum": "$products.price"}}});
+
         const sum = await Order.aggregate([
              { "$project": {
                 "user_id": user_id,

@@ -1,0 +1,64 @@
+
+
+nav{
+    display: flex;
+    height: 50px;
+    width: 98%;
+    padding: 5px 20px;
+    justify-content: space-between;
+    text-align: center;
+    background: linear-gradient(rgb(2, 3, 60), rgb(1, 47, 21));
+}
+
+img{
+    cursor: pointer;
+}
+
+.logo{
+    text-align: center;
+    font-size: 40px;
+    margin-right: 50px;
+    text-decoration: wavy;
+    text-shadow: 3px 3px 4px grey;
+    color: rgb(231, 5, 126);
+    font-weight: 600;
+    font-style: italic;
+}
+
+.sideDiv{
+    height:auto;
+    width: 150px;
+    padding: 20px 10px;
+    background-color:rgb(144, 231, 181);
+    color: deeppink;
+    line-height: 30px;
+    display: block;
+    position: absolute;
+    box-shadow: rgba(240, 46, 170, 0.4) 5px 5px, rgba(240, 46, 170, 0.3) 10px 10px, rgba(240, 46, 170, 0.2) 15px 15px, rgba(240, 46, 170, 0.1) 20px 20px, rgba(240, 46, 170, 0.05) 25px 25px;
+}
+
+.sideDiv > div > a{
+    cursor: pointer;
+    color: deeppink;
+    text-decoration: none;
+}
+
+.sideDiv > div > a:hover{
+    font-weight: 600;
+}
+
+.none{
+    display: none;
+}
+
+.username{
+    margin-left: -600px;
+    margin-top: 7px;
+    font-weight: 600;
+    font-size: 25px;
+    display: block;
+}
+
+.none{
+    display: none;
+}

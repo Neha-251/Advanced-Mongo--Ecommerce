@@ -1,0 +1,33 @@
+
+
+
+.prodInp{
+
+}
+.prod_img{
+    height: 350px;
+    width: 420px;
+}
+
+.prod_subDiv{
+    margin: 20px 30%;
+}
+
+.prod_container{
+    margin: auto;
+    width: 75%;
+    
+    padding: 50px 100px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 80px;
+    
+}
+
+.pageDiv{
+    margin: 20px 40%;
+}
+
+.qtyDiv{
+    display: flex;
+}

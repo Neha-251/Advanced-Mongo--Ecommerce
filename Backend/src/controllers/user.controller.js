@@ -3,10 +3,21 @@ const User = require("../models/user.model");
 const router = express.Router();
 
 //to get all the users
-router.get("/", async (req, res) => {
+router.get("", async (req, res) => {
   try {
-    const users = await User.find().lean().exec();
-    res.status(200).send({ data: users});
+
+    let email = req.query.email;
+    let psw = req.query.psw;
+
+    if(email === "all" && psw === "all") {
+      const users = await User.find().lean().exec();
+      res.status(200).send({ data: users});
+    } else {
+      const user = await User.find({$and: [ {email: {$eq: email}}, {password: {$eq: psw}} ]})
+      .lean().exec()
+      res.status(200).send({ data: user});
+    }
+
   } catch (error) {
     res.status(500).send({error: error.message });
   }
@@ -98,5 +109,7 @@ router.delete("/:id/delete", async (req, res) => {
     res.status(500).send({error: error.message });
   }
 });
+
+
 
 module.exports = router;

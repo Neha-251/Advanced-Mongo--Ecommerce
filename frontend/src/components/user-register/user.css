@@ -1,0 +1,52 @@
+
+.signup_mainDiv{
+    width: 20%;
+    margin: 50px auto;
+    padding: 80px;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+
+.register_form{
+    height: 300px;
+    width: 80%;
+    
+}
+
+input{
+    margin: 8px auto;
+    width: 300px;
+    height: 30px;
+    padding: 5px;
+    outline: none;
+    border: 1px solid deeppink;
+    /* color: deepskyblue; */
+}
+
+.submit_btn{
+    padding: 8px 20px;
+    height: auto;
+    width: auto;
+    font-weight: 600;
+    text-transform: uppercase;
+    margin: 10px 40%;
+}
+
+.submit_btn:hover{
+    background-color: deeppink;
+    color: white;
+    cursor: pointer;
+}
+
+.alter_btn{
+    background-color: transparent;
+    border: none;
+    font-size: 18px;
+    margin: 5px 5%;
+}
+
+.alter_btn > a > span{
+    text-decoration: underline;
+    text-decoration-color: deeppink;
+    cursor: pointer;
+}
+

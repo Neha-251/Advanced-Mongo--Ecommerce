@@ -1,0 +1,44 @@
+
+.cartMain{
+    width: 90%;
+    margin: auto;
+   
+}
+
+.prodimg{
+    height: 250px;
+    width: 300px;
+}
+
+.prodDiv{
+    display: flex;
+    border-bottom: 1px solid deeppink;
+    padding: 20px;
+}
+
+.cart1{
+    width: 60%;
+    /* border: 1px solid red; */
+    margin-top: 30px;
+    
+}
+
+.sideDivCart{
+    width: 300px;
+    position: fixed;
+    margin-top: 50px;
+    margin-left: 65%;
+    padding: 20px;
+    border: 1px solid deeppink;
+}
+
+
+.cartMain{
+    display: flex;
+    gap: 30px;
+}
+
+.textDiv{
+    padding: 30px;
+    
+}
