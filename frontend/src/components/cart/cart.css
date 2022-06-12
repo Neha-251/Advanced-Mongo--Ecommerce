@@ -42,3 +42,13 @@
     padding: 30px;
     
 }
+
+.loadingDiv{
+    position: fixed;
+    margin: 50px 40%;
+    display: block;
+}
+
+.none{
+    display: none;
+}

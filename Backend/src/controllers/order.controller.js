@@ -48,4 +48,40 @@ router.get("/getOne", async(req, res) => {
 })
 
 
+router.patch("/edit/products", async(req, res) => {
+    try{
+
+        let userId = req.query.userId;
+        let foodId = req.query.foodId;
+
+        const order = await Order.update({
+            user_id: userId
+          },
+          {
+            $pull: {
+              products: {
+                _id: foodId
+              }
+            }
+          })
+        return res.status(200).send({order: order});
+    }
+    catch(err) {
+        console.log('err', err)
+    }
+})
+
+
+router.detele("/delete/:id", async(req, res) => {
+    try{
+
+        const order = await Order.findByIdAndDelete(req.params.id).lean().exec();
+        return res.status(200).send(order);
+    }
+    catch(err) {
+        return res.status(400).send({error: err.message});
+    }
+})
+
+
 module.exports = router;
