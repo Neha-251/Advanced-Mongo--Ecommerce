@@ -12,7 +12,8 @@ export const Cart = () => {
     const [products, setProducts] = useState([]);
     const [totalPrice, setTotalPrice] = useState(0);
     const [loading, setLoading] = useState(false);
-    const [getreq, setgetreq] = useState(false);
+    const [orderid, setorderid] = useState("");
+
 
     useEffect(() => {
         const getData = async () => {
@@ -22,7 +23,7 @@ export const Cart = () => {
                 console.log('res_data', res_data)
                 setProducts(res_data.order[0].products);
                 setTotalPrice(res_data.sum[0].TotalPrice)
-
+                setorderid(res_data.order[0]._id)
             }
             catch (err) {
                 console.log('err', err)
@@ -59,19 +60,26 @@ export const Cart = () => {
         .then(res => console.log("delete", res)).then(
             setTimeout(() => {
                 getData()
-                if(products.length === 0) {
-                    axios.delete(``)
+                console.log('products.length', products.length)
+
+                if(products.length === 1) {
+                    axios.delete(`https://full-stack-food-app-advanced.herokuapp.com/orders/delete/${orderid}`)
                 }
             }, 1000)
         );
 
+        
     }
+
+
+    
 
     return (
         <div className="cartMain">
             <div className={loading === true ? "loadingDiv" : "none"}>Loading...</div>
             <div className="cart1">
                 {
+                    
                     products.map((el) => {
                         return (
                             <div className="prodDiv" key={el._id}>
