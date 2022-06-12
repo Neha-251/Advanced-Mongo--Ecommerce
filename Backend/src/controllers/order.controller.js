@@ -33,9 +33,9 @@ router.get("/getOne", async(req, res) => {
 
         const sum = await Order.aggregate([
              { "$project": {
-                "user_id": user_id,
+                user_id: user_id,
                 "TotalPrice": {
-                   "$sum": "$products.price"
+                   $sum: "$products.price"
                    }
                 }}
              ]);

@@ -110,7 +110,7 @@ export const Product = () => {
             qty: 1
         }])
 
-        console.log('sProd', sProd)
+       // console.log('sProd', sProd)
         
     }
 
@@ -118,7 +118,7 @@ export const Product = () => {
 
         navigate(`/products?page=${page}&pagesize=${pagesize}&desc=${desc}&sort=${e.target.value}`)
 
-        console.log('sort', typeof (e.target.value))
+       // console.log('sort', typeof (e.target.value))
 
     }
 

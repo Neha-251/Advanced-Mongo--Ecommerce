@@ -20,9 +20,9 @@ export const Cart = () => {
             try {
                 let res = await fetch(`https://full-stack-food-app-advanced.herokuapp.com/orders/getOne?user_id=${userId}`)
                 let res_data = await res.json();
-                console.log('res_data', res_data)
+               // console.log('res_data', res_data)
                 setProducts(res_data.order[0].products);
-                setTotalPrice(res_data.sum[0].TotalPrice)
+                setTotalPrice(res_data.sum[1].TotalPrice)
                 setorderid(res_data.order[0]._id)
             }
             catch (err) {
@@ -43,9 +43,10 @@ export const Cart = () => {
             try {
                 let res = await fetch(`https://full-stack-food-app-advanced.herokuapp.com/orders/getOne?user_id=${userId}`)
                 let res_data = await res.json();
-                console.log('res_data', res_data)
+               // console.log('res_data', res_data)
                 setProducts(res_data.order[0].products);
-                setTotalPrice(res_data.sum[0].TotalPrice)
+                setTotalPrice(res_data.sum[1].TotalPrice)
+               // console.log('res_data.sum[1].TotalPrice', res_data.sum[1].TotalPrice)
                 setTimeout(()=> {
                     setLoading(false)
 
@@ -60,7 +61,7 @@ export const Cart = () => {
         .then(res => console.log("delete", res)).then(
             setTimeout(() => {
                 getData()
-                console.log('products.length', products.length)
+               // console.log('products.length', products.length)
 
                 if(products.length === 1) {
                     axios.delete(`https://full-stack-food-app-advanced.herokuapp.com/orders/delete/${orderid}`)
