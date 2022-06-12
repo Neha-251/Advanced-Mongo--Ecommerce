@@ -72,7 +72,7 @@ router.patch("/edit/products", async(req, res) => {
 })
 
 
-router.detele("/delete/:id", async(req, res) => {
+router.delete("/delete/:id", async(req, res) => {
     try{
 
         const order = await Order.findByIdAndDelete(req.params.id).lean().exec();
