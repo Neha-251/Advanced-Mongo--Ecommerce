@@ -44,7 +44,7 @@ export const Product = () => {
 
     }
 
-    const getRating = async(prodId) => {
+    const getRating = async() => {
         try{
             let resR = await fetch("https://full-stack-food-app-advanced.herokuapp.com/ratings");
             let resR_data = await resR.json();
@@ -114,9 +114,6 @@ export const Product = () => {
             email: userDetail.email,
             password: userDetail.password
         })
-
-
-
     }, [userDetail, quant, sProd])
 
     const handleAddCart = (el) => {
@@ -155,7 +152,18 @@ export const Product = () => {
         }, 1000)
     }
 
+   
 
+    const { prodId } = useContext(userContext);
+
+    const handleProduct = (id) => {
+       // setpId(id)
+        if(id){
+            prodId(id);
+            navigate("/singleProduct");
+        }
+
+    }
 
 
     return (
@@ -181,29 +189,29 @@ export const Product = () => {
                 {
                     data.map((el) => {
                         return (
-                            <div className="eachDiv" key={el._id}>
+                            <div className="eachDiv" onClick={()=> handleProduct(el._id)} key={el._id}>
                                 <img src={el.image} className="prod_img" alt={el.name} />
                                 <p className="title">{el.name}</p>
                                 <p className="price">{el.price} Rs</p>
 
-                                <div className="ratingDiv"> <p>Average Rating </p> {
+                                <div className="ratingDiv"> <p className="ratingP1">Average Rating</p> {
                                     rating.map((e) => {
                                         
-                                        return  <p>{e.product_id === el._id && e.ratingAvg.toFixed(1)}</p>
+                                        return  <p className="ratingP2">{e.product_id === el._id && e.ratingAvg.toFixed(1)}</p>
                                         
                                     })
                                     
-                                } <p>out of 5</p>
+                                } <p className="ratingP3">out of 5</p>
                                 </div>
 
-                                <div className="ratingDiv"> <p>Total </p>
+                                <div className="ratingDiv"> <p className="ratingP1">Total</p>
                                     {
                                         rateCount.map((re) => {
                                             
-                                            return <p>{re.product_id === el._id && re.count}</p>
+                                            return <p className="ratingP2">{re.product_id === el._id && re.count}</p>
                                             
                                         })
-                                    } <p>Ratings </p>
+                                    } <p className="ratingP3">Ratings </p>
                                 </div>
                                 
                                 <button className="addBtn" onClick={() => handleAddCart(el)}>Add to Cart</button>

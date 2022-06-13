@@ -63,9 +63,9 @@ padding: 5px 10px;
 }
 
 .pageDiv{
-    width: 10%;
+    width: 13%;
     justify-content: space-around;
-    border: 1px solid red;
+   
     margin: 20px auto;
 }
 
@@ -83,8 +83,9 @@ padding: 5px 10px;
 
 .ratingDiv{
     display: flex;
-    text-align: center;
+    
     justify-content: center;
+    text-align: center;
 }
 
 .title{
@@ -97,11 +98,21 @@ padding: 5px 10px;
     font-weight: 600;
 }
 
-.ratingDiv p{
-    margin-right: 0.5px;
-    font-size: 18px;
-    text-align: center;
+.ratingP2{
     color: rgb(192, 5, 192);
+    
+}
+
+
+.ratingP1{
+    margin-right: 0.3px;
+    color: rgb(192, 5, 192);
+    justify-content: center;
+}
+.ratingP3{
+    margin-left: 15px;
+    color: rgb(192, 5, 192);
+    justify-content: center;
 }
 
 .cartBtn{

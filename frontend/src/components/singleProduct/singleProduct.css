@@ -1,0 +1,56 @@
+
+
+.mainDiv_sin{
+    display: flex;
+    width: 70%;
+    margin: 100px auto;
+}
+
+.sin_img{
+    height: 450px;
+    width: 600px;
+    border-radius: 10px;
+
+}
+
+.desDiv{
+    padding: 0 50px;
+}
+
+h1{
+    font-size: 45px;
+}
+
+h4{
+    font-size: 35px;
+    margin: 5px 0;
+}
+h5{
+    font-size: 30px;
+    margin: 10px 0;
+}
+
+
+.sratingDiv1{
+    display: flex;
+    margin-top: 30px;
+
+}
+
+.sratingDiv2{
+    display: flex;
+}
+
+.sratingP2{
+    color: rgb(192, 5, 192);
+}
+
+
+.sratingP1{
+    margin-right: 0.3px;
+    color: rgb(192, 5, 192);
+}
+.sratingP3{
+    margin-left: 15px;
+    color: rgb(192, 5, 192);
+}

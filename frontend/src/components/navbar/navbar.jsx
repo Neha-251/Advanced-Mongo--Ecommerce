@@ -9,8 +9,10 @@ export const Navbar = () => {
 
     const [btnClick, setBtnClick] = useState(false);
     const {user} = useContext(userContext);
-    console.log('userNav', user)
+   // console.log('userNav', user)
 
+    
+    
 
 
     const handleMenu = () => {
