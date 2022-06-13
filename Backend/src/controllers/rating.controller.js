@@ -5,14 +5,14 @@ const router = express.Router();
 
 router.get("", async(req, res) => {
     try{
-        let prodId = req.query.prodId;
+        
 
         // const rating = await Rating.find({product_id: {$eq: prodId}}).populate("product_id")
         // .lean().exec();
 
         const avg = await Rating.aggregate([
             { "$project": {
-                product_id: prodId,
+                product_id: "$product_id",
                 "ratingAvg": { $avg: "$ratings"} } }
         ])
 
@@ -22,7 +22,7 @@ router.get("", async(req, res) => {
         // ])
         const count = await Rating.aggregate([
             {$project: { 
-                product_id: prodId,
+                product_id: "$product_id",
                 "count": { $size:"$ratings" }}}])
 
         return res.status(200).send({rating: avg, count});
