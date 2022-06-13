@@ -20,11 +20,12 @@ export const Product = () => {
     const [response, setResponse] = useState([])
     const [pages, setPages] = useState([])
     const [totalPage, setTotalPage] = useState(0);
-    const [currpage, setCurrPage] = useState(1);
 
     const { user } = useContext(userContext);
     const { userId } = useContext(userContext);
     const [userDetail, setUserDetail] = useState({});
+    const [rating, setRating] = useState(0);
+    const [rateCount, setRateCount] = useState(0);
 
     //console.log('userProd', user)
 
@@ -38,21 +39,40 @@ export const Product = () => {
 
 
         let resp = await fetch(`https://full-stack-food-app-advanced.herokuapp.com/users/${userId}`)
-
         let resp_data = await resp.json();
         setUserDetail(resp_data.data);
+
     }
 
-    console.log("data", data);
+    const getRating = async(prodId) => {
+        try{
+            let resR = await fetch("https://full-stack-food-app-advanced.herokuapp.com/ratings");
+            let resR_data = await resR.json();
+            //console.log('resR_data', resR_data)
+
+            setRating(resR_data.rating);
+            setRateCount(resR_data.count);
+        }
+        catch(err) {
+            console.log('err', err)
+
+        }
+    }
+
+   // console.log("data", data);
     // console.log("response", response)
     // console.log('totalPage', totalPage)
 
 
     useEffect(() => {
         getData();
-
+        
         // setTotalPage(Math.round(response.total_pages))
     }, [page, pagesize, desc, sort])
+
+    useEffect(() => {
+        getRating();
+    }, [])
 
     useEffect(() => {
 
@@ -133,8 +153,6 @@ export const Product = () => {
         setTimeout(() => {
             navigate("/cart")
         }, 1000)
-
-
     }
 
 
@@ -143,19 +161,19 @@ export const Product = () => {
     return (
         <div>
             <div className="prod_subDiv">
-                <input type="text" className="prodInp" placeholder="Search Dishes..." />
-                <select onChange={(e) => navigate(`/products?page=${page}&pagesize=${pagesize}&desc=${e.target.value}`)}>
+                {/* <input type="text" className="prodInp" placeholder="Search Dishes..." /> */}
+                <select className="descSe" onChange={(e) => navigate(`/products?page=${page}&pagesize=${pagesize}&desc=${e.target.value}`)}>
                     <option value="all">All</option>
                     <option value="Veg">Veg</option>
                     <option value="Non Veg">Non Veg</option>
                 </select>
-                <select onChange={(e) => handleSort(e)}>
+                <select className="priceSe" onChange={(e) => handleSort(e)}>
                     <option value="">Sort by Price</option>
                     <option value="1">Low to High</option>
                     <option value="-1">High to Low</option>
 
                 </select>
-                <button onClick={handleCartBtn}>🛒 Cart</button>
+                <button className="cartBtn" onClick={handleCartBtn}>🛒 Cart</button>
             </div>
 
             <div className="prod_container" >
@@ -163,16 +181,32 @@ export const Product = () => {
                 {
                     data.map((el) => {
                         return (
-                            <div key={el._id}>
+                            <div className="eachDiv" key={el._id}>
                                 <img src={el.image} className="prod_img" alt={el.name} />
-                                <p>{el.name}</p>
-                                <p>{el.price} Rs</p>
-                                {/* <div className="qtyDiv">
-                                    <button onClick={() => quant>1? setQuant(prev => prev - 1) : setQuant(1)}>-</button>
-                                    <p>{quant}</p>
-                                    <button onClick={() => setQuant(prev => prev + 1)}>+</button>
-                                </div> */}
-                                <button onClick={() => handleAddCart(el)}>Add to Cart</button>
+                                <p className="title">{el.name}</p>
+                                <p className="price">{el.price} Rs</p>
+
+                                <div className="ratingDiv"> <p>Average Rating </p> {
+                                    rating.map((e) => {
+                                        
+                                        return  <p>{e.product_id === el._id && e.ratingAvg.toFixed(1)}</p>
+                                        
+                                    })
+                                    
+                                } <p>out of 5</p>
+                                </div>
+
+                                <div className="ratingDiv"> <p>Total </p>
+                                    {
+                                        rateCount.map((re) => {
+                                            
+                                            return <p>{re.product_id === el._id && re.count}</p>
+                                            
+                                        })
+                                    } <p>Ratings </p>
+                                </div>
+                                
+                                <button className="addBtn" onClick={() => handleAddCart(el)}>Add to Cart</button>
                             </div>
                         )
                     })

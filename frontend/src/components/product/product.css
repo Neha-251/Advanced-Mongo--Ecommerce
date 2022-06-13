@@ -1,33 +1,112 @@
 
+.descSe{
+    margin: 0 10px;
+    border: 1px solid deeppink;
+    padding: 5px 10px;
+}
 
+.priceSe{
+    border: 1px solid deeppink;
+    margin: 0 10px;
+padding: 5px 10px;
+}
+
+.addBtn{
+    background-color: transparent;
+    border: 1px solid deeppink;
+    padding: 5px 10px;
+    margin: 10px 0;
+    cursor: pointer;
+}
+
+.addBtn:hover{
+    background-color: deeppink;
+    border: 1px solid white;
+    font-weight: 600;
+    color: white;
+}
 
 .prodInp{
-
+    border-radius: 10px;
+   
 }
 .prod_img{
     height: 350px;
     width: 420px;
+    border-radius: 10px;
 }
 
 .prod_subDiv{
     margin: 20px 30%;
+    width: 100%;
 }
 
 .prod_container{
     margin: auto;
     width: 75%;
-    
     padding: 50px 100px;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 80px;
-    
+    text-align: center;
+
+}
+
+.eachDiv{
+    padding: 50px;
+    border-radius: 10px;
+}
+
+.eachDiv:hover{
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+
 }
 
 .pageDiv{
-    margin: 20px 40%;
+    width: 10%;
+    justify-content: space-around;
+    border: 1px solid red;
+    margin: 20px auto;
 }
+
+.pageDiv button{
+    padding: 2px 8px;
+    margin: 0 5px;
+    background: transparent;
+    border: 1px solid deeppink;
+}
+
 
 .qtyDiv{
     display: flex;
+}
+
+.ratingDiv{
+    display: flex;
+    text-align: center;
+    justify-content: center;
+}
+
+.title{
+    font-size: 25px;
+    font-weight: 600;
+}
+
+.price{
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.ratingDiv p{
+    margin-right: 0.5px;
+    font-size: 18px;
+    text-align: center;
+    color: rgb(192, 5, 192);
+}
+
+.cartBtn{
+    background-color: transparent;
+    border: 1px solid deeppink;
+    padding: 5px 10px;
+    cursor: pointer;
 }
